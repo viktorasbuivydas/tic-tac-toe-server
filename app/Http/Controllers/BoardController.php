@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PlayerMoveResource;
 use App\Http\Resources\SquareResource;
 use App\Models\Action;
 use App\Models\Board;
@@ -34,10 +35,12 @@ class BoardController extends Controller
         ]);
         $player = $request->isX ? 'X' : 'O';
         $log = 'Player put '.$player.' on this square: x: '.$request->x.' y: '.$request->y;
-        Log::create([
+        $game_log = Log::create([
             'game_id' => $game_id,
             'log' => $log
         ]);
-        return new SquareResource($square);
+        $request->square = $square;
+        $request->log = $game_log;
+        return new PlayerMoveResource($request);
     }
 }
