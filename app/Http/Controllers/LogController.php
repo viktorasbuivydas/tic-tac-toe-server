@@ -8,6 +8,5 @@ use Illuminate\Http\Request;
 class LogController extends Controller
 {
     public function index(){
-        Log::all();
     }
 }

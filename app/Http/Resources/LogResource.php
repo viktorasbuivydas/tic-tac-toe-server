@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GameResource extends JsonResource
+class LogResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,7 @@ class GameResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'uid' => $this->uid,
-            'squares' => SquareResource::collection($this->squares),
-            'logs' => LogResource::collection($this->logs)
+            'log' => $this->log
         ];
     }
 }

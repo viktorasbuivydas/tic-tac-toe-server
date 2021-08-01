@@ -15,4 +15,7 @@ class Game extends Model
     public function squares(){
         return $this->hasMany(Board::class);
     }
+    public function logs(){
+        return $this->hasMany(Log::class);
+    }
 }
