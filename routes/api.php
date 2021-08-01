@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/game/store', [\App\Http\Controllers\GameController::class, 'create']);
+Route::post('/game/store', [\App\Http\Controllers\GameController::class, 'store']);
 Route::get('/game/{uid}', [\App\Http\Controllers\GameController::class, 'show']);
 
 Route::get('/board/{uid}', [\App\Http\Controllers\BoardController::class, 'show']);

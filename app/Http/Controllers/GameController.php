@@ -2,38 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\GameCreateResource;
 use App\Http\Resources\GameResource;
 use App\Models\Board;
 use App\Models\Game;
+use App\Services\GameService;
 use Illuminate\Support\Str;
+use App\Services\BoardService;
 
 class GameController extends Controller
 {
-    public function create(){
+    public function store(){
 
-        $uid = Str::uuid()->toString();
+        $uid = (new GameService())->generateUid();
         $game = Game::create(['uid' => $uid]);
+        Board::insert((new BoardService())->generateBoard($game->id));
 
-        Board::insert($this->generateBoard($game->id));
-        return $game->uid;
+        return new GameCreateResource($game);
 
     }
 
     public function show($uid){
 
         return new GameResource(Game::where('uid', $uid)->firstOrFail());
-
-    }
-
-    private function generateBoard($game_id){
-
-        $board = [];
-        for($y = 1; $y <= 3; $y++){
-            for($x = 1; $x <= 3; $x++){
-                array_push($board, ['x' => $x, 'y' => $y, 'game_id' => $game_id]);
-            }
-        }
-        return $board;
 
     }
 }
