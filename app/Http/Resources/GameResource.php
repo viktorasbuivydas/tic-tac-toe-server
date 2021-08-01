@@ -17,7 +17,7 @@ class GameResource extends JsonResource
         return [
             'id' => $this->id,
             'uid' => $this->uid,
-            'squares' => BoardResource::collection($this->squares)
+            'squares' => SquareResource::collection($this->squares)
         ];
     }
 }

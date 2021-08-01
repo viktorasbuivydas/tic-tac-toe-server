@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SquareResource;
 use App\Models\Action;
 use App\Models\Board;
 use App\Models\Game;
@@ -20,12 +21,12 @@ class BoardController extends Controller
 
         $game = Game::where('id', $request->game_id)->firstOrFail();
         $game_id = $game->id;
-        $cell = Board::where('x', $request->x)
+        $square = Board::where('x', $request->x)
             ->where('y', $request->y)
             ->where('game_id', $game_id)
             ->firstOrFail();
-        $cell->isX = $request->isX;
-        $cell->save();
+        $square->isX = $request->isX;
+        $square->save();
 
         Action::create([
             'isX' => $request->isX,
@@ -37,5 +38,6 @@ class BoardController extends Controller
             'game_id' => $game_id,
             'log' => $log
         ]);
+        return new SquareResource($square);
     }
 }
