@@ -18,4 +18,7 @@ class Game extends Model
     public function logs(){
         return $this->hasMany(Log::class);
     }
+    public function lastAction(){
+        return $this->hasOne(Action::class)->latest();
+    }
 }

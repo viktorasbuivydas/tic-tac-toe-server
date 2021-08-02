@@ -10,4 +10,8 @@ class Action extends Model
     use HasFactory;
 
     protected $fillable = ['isX', 'game_id'];
+
+    protected $casts = [
+        'isX' => 'boolean',
+    ];
 }

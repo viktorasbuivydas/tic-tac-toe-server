@@ -18,7 +18,8 @@ class GameResource extends JsonResource
             'id' => $this->id,
             'uid' => $this->uid,
             'squares' => SquareResource::collection($this->squares),
-            'logs' => LogResource::collection($this->logs)
+            'logs' => LogResource::collection($this->logs),
+            'isPlayerXTurn' => $this->lastAction === null ? true : ($this->lastAction->isX === false ? true : false)
         ];
     }
 }
