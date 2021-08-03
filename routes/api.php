@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,11 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/game/store', [\App\Http\Controllers\GameController::class, 'store']);
-Route::get('/game/{uid}', [\App\Http\Controllers\GameController::class, 'show']);
+Route::resource('actions', Api\ActionController::class, ['only' => ['store']]);
+Route::resource('boards', Api\BoardController::class, ['only' => ['show', 'store', 'update']]);
+Route::resource('games', Api\GameController::class, ['only' => ['show', 'store', 'update']]);
+Route::resource('logs', Api\LogController::class, ['only' => ['store']]);
 
-Route::get('/board/{uid}', [\App\Http\Controllers\BoardController::class, 'show']);
-Route::post('/board/move', [\App\Http\Controllers\BoardController::class, 'playerMove']);
+
 
 
 

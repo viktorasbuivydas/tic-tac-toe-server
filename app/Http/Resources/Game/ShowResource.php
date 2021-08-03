@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Game;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PlayerMoveResource extends JsonResource
+class ShowResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,7 @@ class PlayerMoveResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'square' => new SquareResource($this->square),
-            'log' => new LogResource($this->log)
+            'uid' => $this->uid
         ];
     }
 }

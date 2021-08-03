@@ -17,13 +17,23 @@ class Game extends Model
 
     public $timestamps = false;
 
-    public function squares(){
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
+    }
+
+    public function squares()
+    {
         return $this->hasMany(Board::class);
     }
-    public function logs(){
+
+    public function logs()
+    {
         return $this->hasMany(Log::class);
     }
-    public function lastAction(){
+
+    public function lastAction()
+    {
         return $this->hasOne(Action::class)->latest();
     }
 }
