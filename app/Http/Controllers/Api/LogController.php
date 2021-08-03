@@ -10,6 +10,16 @@ use App\Models\Log;
 
 class LogController extends Controller
 {
+
+    public function show($uid)
+    {
+
+        $game = Game::where('uid', $uid)->firstOrFail();
+        $logs = $game->logs()->get();
+
+        return ShowResource::collection($logs);
+    }
+
     public function store(StoreRequest $request)
     {
         $player = $request->isX ? 'X' : 'O';
