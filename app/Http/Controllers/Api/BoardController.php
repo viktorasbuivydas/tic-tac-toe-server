@@ -35,9 +35,9 @@ class BoardController extends Controller
 
     public function update(UpdateRequest $request)
     {
-
+        $game = Game::where('uid', $request->uid)->select('id')->firstOrFail();
         $square = Board::where('id', $request->square_id)
-            ->where('game_id', $request->game_id)
+            ->where('game_id', $game->id)
             ->firstOrFail();
         $square->isX = $request->isX;
         $square->save();
