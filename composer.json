@@ -43,7 +43,8 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "test:watch": "vendor\\bin\\phpunit-watcher watch"
     },
     "extra": {
         "laravel": {
