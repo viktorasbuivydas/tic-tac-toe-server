@@ -15,7 +15,9 @@ class ShowResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'uid' => $this->uid
+            'uid' => $this->uid,
+            'isPlayerXTurn' => $this->lastAction === null ? true : ($this->lastAction->isX === false ? true : false),
+            'isFinished' => $this->isFinished
         ];
     }
 }
