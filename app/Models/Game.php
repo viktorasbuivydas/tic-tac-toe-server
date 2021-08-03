@@ -11,7 +11,12 @@ class Game extends Model
 
     protected $fillable = ['uid', 'isFinished'];
 
+    protected $casts = [
+        'isFinished' => 'boolean'
+    ];
+
     public $timestamps = false;
+
     public function squares(){
         return $this->hasMany(Board::class);
     }
