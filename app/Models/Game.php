@@ -9,7 +9,7 @@ class Game extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['uid'];
+    protected $fillable = ['uid', 'isFinished'];
 
     public $timestamps = false;
     public function squares(){
