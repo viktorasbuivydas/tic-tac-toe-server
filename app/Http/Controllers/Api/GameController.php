@@ -31,14 +31,4 @@ class GameController extends Controller
 
         return new ShowResource($game);
     }
-
-    public function update(UpdateRequest $request)
-    {
-
-        $game = Game::where('uid', $request->uid)->firstOrFail();
-        $board = Board::where('game_id', $game->id)->get();
-        $winner_squares = (new BoardService())->findWinnerSquares($board, $request->index);
-        $game->isFinished = $winner_squares['isFinished'];
-        return new ShowResource($winner_squares);
-    }
 }

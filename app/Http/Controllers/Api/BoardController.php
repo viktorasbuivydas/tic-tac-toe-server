@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Board\StoreRequest;
 use App\Http\Requests\Board\UpdateRequest;
 use App\Http\Resources\Board\ShowResource;
+use App\Http\Resources\Board\UpdateResource;
 use App\Models\Board;
 use App\Models\Game;
 use App\Services\BoardService;
@@ -33,16 +34,24 @@ class BoardController extends Controller
         return ShowResource::collection($squares->get());
     }
 
-    public function update(UpdateRequest $request)
+    public function update(UpdateRequest $request, $uid)
     {
-        $game = Game::where('uid', $request->uid)->select('id')->firstOrFail();
-        $square = Board::where('id', $request->square_id)
-            ->where('game_id', $game->id)
-            ->firstOrFail();
+
+        $game = Game::where('uid', $uid)->select('id')->firstOrFail();
+
+        $board = Board::where('id', $request->square_id)
+            ->where('game_id', $game->id);
+        $game_board = $board->get();
+
+        $square = $board->firstOrFail();
         $square->isX = $request->isX;
         $square->save();
 
-        return new ShowResource($square);
+
+        $winner_squares = (new BoardService())->findWinnerSquares($game_board, $request->square_index);
+        $game->isFinished = $winner_squares['isFinished'];
+
+        return new UpdateResource($game->get());
     }
 
 

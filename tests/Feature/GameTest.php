@@ -12,7 +12,7 @@ class GameTest extends TestCase
 
     public function test_creating_new_game()
     {
-        $response = $this->json('POST', '/api/game/store');
+        $response = $this->json('POST', '/api/games');
         $response->assertStatus(201)
             ->assertJsonStructure(['data' => ['uid']]);
     }
