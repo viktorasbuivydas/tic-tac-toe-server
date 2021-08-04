@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Action\StoreRequest;
 use App\Http\Resources\Action\ShowResource;
 use App\Models\Action;
+use App\Models\Game;
 
 class ActionController extends Controller
 {
     public function store(StoreRequest $request)
     {
-
-        $action = Action::create($request->validated());
+        $game = Game::where('uid', $request->game_uid)->firstOrFail();
+        $action = $game->actions()->create(['isX' => $request->isX]);
 
         return new ShowResource($action);
     }

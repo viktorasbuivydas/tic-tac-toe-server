@@ -27,9 +27,19 @@ class Game extends Model
         return $this->hasMany(Board::class);
     }
 
+    public function square()
+    {
+        return $this->hasOne(Board::class);
+    }
+
     public function logs()
     {
         return $this->hasMany(Log::class);
+    }
+
+    public function actions()
+    {
+        return $this->hasMany(Action::class);
     }
 
     public function lastAction()

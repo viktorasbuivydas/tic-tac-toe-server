@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Board\StoreRequest;
-use App\Http\Requests\Board\UpdateRequest;
 use App\Http\Resources\Board\ShowResource;
 use App\Http\Resources\Board\UpdateResource;
 use App\Models\Board;
 use App\Models\Game;
 use App\Services\BoardService;
+use Illuminate\Http\Request;
 
 class BoardController extends Controller
 {
@@ -24,7 +24,6 @@ class BoardController extends Controller
 
     public function store(StoreRequest $request)
     {
-
         $game = Game::where('uid', $request->uid)->select('id')->firstOrFail();
         $squares = Board::where('game_id', $game->id);
         $square_count = $squares->count();
@@ -34,24 +33,28 @@ class BoardController extends Controller
         return ShowResource::collection($squares->get());
     }
 
-    public function update(UpdateRequest $request, $uid)
+    public function update(Request $request)
     {
-
-        $game = Game::where('uid', $uid)->select('id')->firstOrFail();
+        $uid = $request->uid;
+        $game = Game::where('uid', $uid)->firstOrFail();
 
         $board = Board::where('id', $request->square_id)
             ->where('game_id', $game->id);
-        $game_board = $board->get();
+        $game_board = $game->squares()->get();
 
         $square = $board->firstOrFail();
         $square->isX = $request->isX;
         $square->save();
 
-
         $winner_squares = (new BoardService())->findWinnerSquares($game_board, $request->square_index);
         $game->isFinished = $winner_squares['isFinished'];
+        $new_request = new Request();
+        $new_request->uid = $uid;
+        $new_request->isPlayerXTurn = $game->lastAction();
+        $new_request->isFinished = $game->isFinished;
+        $new_request->square = $square;
 
-        return new UpdateResource($game->get());
+        return new UpdateResource($new_request);
     }
 
 

@@ -18,7 +18,7 @@ class UpdateResource extends JsonResource
             'uid' => $this->uid,
             'isPlayerXTurn' => $this->lastAction === null ? true : ($this->lastAction->isX === false ? true : false),
             'isFinished' => $this->isFinished,
-            'squares' => ShowResource::collection($this->squares)
+            'square' => new ShowResource($this->square)
         ];
     }
 }

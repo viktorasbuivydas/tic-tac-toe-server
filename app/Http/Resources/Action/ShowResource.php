@@ -16,7 +16,7 @@ class ShowResource extends JsonResource
     {
         return [
             'isX' => $this->isX,
-            'game_id' => $this->game_id,
+            'game_uid' => $this->game_uid,
         ];
     }
 }
