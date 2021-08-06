@@ -2,19 +2,22 @@
 
 namespace App\Services;
 
-class BoardService{
+class BoardService
+{
 
-    public function generateBoard($game_id){
+    public function generateBoard($game_id)
+    {
         $board = [];
-        for($y = 1; $y <= 3; $y++){
-            for($x = 1; $x <= 3; $x++){
+        for ($y = 1; $y <= 3; $y++) {
+            for ($x = 1; $x <= 3; $x++) {
                 array_push($board, ['x' => $x, 'y' => $y, 'game_id' => $game_id]);
             }
         }
         return $board;
     }
 
-    public function findWinnerSquares($board, $index){
+    public function findWinnerSquares($board)
+    {
         $winningMoves = [
             [0, 1, 2],
             [3, 4, 5],
@@ -28,24 +31,34 @@ class BoardService{
             [2, 4, 6],
         ];
         $winner = [
-            'isFinished' => false,
+            'isFinished' => null,
+            'winnerSquares' => null,
+            'isWinnerX' => null
         ];
-        $squareCount = 0;
-        for ($i = 0; $i < count($winningMoves); $i++) {
-            $squareCount = 0;
-            for ($j = 0; $j < count($winningMoves[$i]); $j++) {
-                $mySquare = $board[$index]->isX;
-                if ($mySquare === $board[$winningMoves[$i][$j]]->isX) {
-                    $squareCount++;
-                } else {
-                    break;
+        $score = 0;
+
+        for ($player = 1; $player <= 2; $player++) {
+            $isPlayerX = $player === 1;
+            for ($i = 0; $i < count($winningMoves); $i++) {
+                for ($j = 0; $j < count($winningMoves[$i]); $j++) {
+                    if ($board[$j]['isX'] === $isPlayerX) {
+                        $score++;
+                        if ($score === 3) {
+                            $winner['isFinished'] = true;
+                            $winner['winnerSquares'] = $winningMoves[$i];
+                            $winner['isWinnerX'] = $isPlayerX;
+                            break;
+                        }
+                        continue;
+                    } else {
+                        $score = 0;
+                        break;
+                    }
                 }
             }
-            if ($squareCount === 3) {
-                $winner['isFinished'] = true;
-                break;
-            }
+
         }
+
         return $winner;
     }
 }

@@ -47,6 +47,8 @@ class BoardController extends Controller
         $square->save();
 
         $winner_squares = (new BoardService())->findWinnerSquares($game_board, $request->square_index);
+        return $winner_squares;
+        /*
         $game->isFinished = $winner_squares['isFinished'];
         $new_request = new Request();
         $new_request->uid = $uid;
@@ -55,6 +57,7 @@ class BoardController extends Controller
         $new_request->square = $square;
 
         return new UpdateResource($new_request);
+        */
     }
 
 
