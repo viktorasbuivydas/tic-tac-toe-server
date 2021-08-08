@@ -31,9 +31,9 @@ class BoardService
             [2, 4, 6],
         ];
         $winner = [
-            'isFinished' => null,
-            'winnerSquares' => null,
-            'isWinnerX' => null
+            'is_finished' => null,
+            'winner_moves' => null,
+            'is_winner_x' => null
         ];
         $score = 0;
 
@@ -44,9 +44,9 @@ class BoardService
                     if ($board[$winningMoves[$i][$j]]['isX'] === $isPlayerX) {
                         $score++;
                         if ($score === 3) {
-                            $winner['isFinished'] = true;
-                            $winner['winnerSquares'] = $winningMoves[$i];
-                            $winner['isWinnerX'] = $isPlayerX;
+                            $winner['is_finished'] = true;
+                            $winner['winner_moves'] = $winningMoves[$i];
+                            $winner['is_winner_x'] = $isPlayerX;
                             break;
                         }
                         continue;
@@ -58,7 +58,7 @@ class BoardService
             }
 
         }
-        if ($winner['isFinished'] !== true) {
+        if ($winner['is_finished'] !== true) {
 
             // draw
             $score = 0;
@@ -68,9 +68,9 @@ class BoardService
                 }
             }
             if ($score === 9) {
-                $winner['isFinished'] = true;
-                $winner['winnerSquares'] = null;
-                $winner['isWinnerX'] = null;
+                $winner['is_finished'] = true;
+                $winner['winner_moves'] = null;
+                $winner['is_winner_x'] = null;
             }
 
         }
