@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'uid' => ['required', 'string'],
+            'game_uid' => ['required', 'string'],
             'isX' => ['required', 'boolean'],
             'square_id' => ['required', 'integer'],
             'square_index' => ['required', 'integer']

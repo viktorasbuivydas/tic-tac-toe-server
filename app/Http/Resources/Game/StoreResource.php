@@ -4,7 +4,7 @@ namespace App\Http\Resources\Game;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ShowResource extends JsonResource
+class StoreResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,6 @@ class ShowResource extends JsonResource
     {
         return [
             'game_uid' => $this->uid,
-            'isPlayerXTurn' => $this->lastAction === null ? true : ($this->lastAction->isX === false ? true : false),
-            'isFinished' => $this->isFinished,
         ];
     }
 }
