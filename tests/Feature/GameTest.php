@@ -14,7 +14,7 @@ class GameTest extends TestCase
     {
         $response = $this->json('POST', '/api/games');
         $response->assertStatus(201)
-            ->assertJsonStructure(['data' => ['uid']]);
+            ->assertJsonStructure(['data' => ['game_uid']]);
     }
 
 }

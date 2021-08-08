@@ -41,7 +41,7 @@ class BoardService
             $isPlayerX = $player === 1;
             for ($i = 0; $i < count($winningMoves); $i++) {
                 for ($j = 0; $j < count($winningMoves[$i]); $j++) {
-                    if ($board[$winningMoves[$i][$j]]['isX'] === $isPlayerX) {
+                    if ($board[$winningMoves[$i][$j]]['is_x'] === $isPlayerX) {
                         $score++;
                         if ($score === 3) {
                             $winner['is_finished'] = true;
@@ -63,7 +63,7 @@ class BoardService
             // draw
             $score = 0;
             for ($i = 0; $i < count($board); $i++) {
-                if ($board[$i]['isX'] !== null) {
+                if ($board[$i]['is_x'] !== null) {
                     $score++;
                 }
             }

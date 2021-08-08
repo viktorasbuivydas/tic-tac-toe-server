@@ -15,7 +15,7 @@ class LogTest extends TestCase
     public function test_creating_new_log_with_not_existing_game()
     {
         $data = [
-            'isX'=> true,
+            'is_x'=> true,
             'game_uid' => 'sfdsdf-fgsdfh-rfgsdfg',
             'x'=> 1,
             'y' => 1

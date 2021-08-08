@@ -129,24 +129,24 @@ class WinnerTest extends TestCase
         ], true, [2, 4, 6], false);
     }
 
-    private function testBoard($squares, $isFinished, $winnerSquares, $isWinnerX)
+    private function testBoard($squares, $is_finished, $winner_moves, $is_winner_x)
     {
         $board = [
-            ['x' => 1, 'y' => 1, 'isX' => null],
-            ['x' => 2, 'y' => 1, 'isX' => null],
-            ['x' => 3, 'y' => 1, 'isX' => null],
-            ['x' => 1, 'y' => 2, 'isX' => null],
-            ['x' => 2, 'y' => 2, 'isX' => null],
-            ['x' => 3, 'y' => 2, 'isX' => null],
-            ['x' => 1, 'y' => 3, 'isX' => null],
-            ['x' => 2, 'y' => 3, 'isX' => null],
-            ['x' => 3, 'y' => 3, 'isX' => null],
+            ['x' => 1, 'y' => 1, 'is_x' => null],
+            ['x' => 2, 'y' => 1, 'is_x' => null],
+            ['x' => 3, 'y' => 1, 'is_x' => null],
+            ['x' => 1, 'y' => 2, 'is_x' => null],
+            ['x' => 2, 'y' => 2, 'is_x' => null],
+            ['x' => 3, 'y' => 2, 'is_x' => null],
+            ['x' => 1, 'y' => 3, 'is_x' => null],
+            ['x' => 2, 'y' => 3, 'is_x' => null],
+            ['x' => 3, 'y' => 3, 'is_x' => null],
         ];
         if ($squares !== null) {
             foreach ($board as $key => $value) {
                 foreach ($squares as $square_key => $square_value) {
                     if ($key === $square_key) {
-                        $board[$square_key]['isX'] = $square_value;
+                        $board[$square_key]['is_x'] = $square_value;
                     }
                 }
             }
@@ -155,9 +155,9 @@ class WinnerTest extends TestCase
         $winner = $boardService->findWinnerSquares($board);
         $this->assertEquals(json_encode($winner), json_encode(
             [
-                'isFinished' => $isFinished,
-                'winnerSquares' => $winnerSquares,
-                'isWinnerX' => $isWinnerX
+                'is_finished' => $is_finished,
+                'winner_moves' => $winner_moves,
+                'is_winner_x' => $is_winner_x
             ]));
     }
 }
