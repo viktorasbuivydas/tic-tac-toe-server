@@ -13,7 +13,7 @@ class ActionController extends Controller
     public function store(StoreRequest $request)
     {
         $game = Game::where('uid', $request->game_uid)->firstOrFail();
-        $action = $game->actions()->create(['isX' => $request->isX]);
+        $action = $game->actions()->create(['is_x' => $request->is_x]);
 
         return new ShowResource($action);
     }

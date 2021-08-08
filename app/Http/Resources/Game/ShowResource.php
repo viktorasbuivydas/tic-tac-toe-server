@@ -16,8 +16,9 @@ class ShowResource extends JsonResource
     {
         return [
             'game_uid' => $this->uid,
-            'isPlayerXTurn' => $this->lastAction === null ? true : ($this->lastAction->isX === false ? true : false),
-            'isFinished' => $this->isFinished,
+            'is_player_x_turn' => $this->lastAction === null ? true : ($this->lastAction->isX === false ? true : false),
+            'is_finished' => $this->isFinished,
+            'winner_moves' => $this->winner_moves
         ];
     }
 }

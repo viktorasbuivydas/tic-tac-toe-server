@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'isX' => ['required', 'boolean'],
+            'is_x' => ['required', 'boolean'],
             'game_uid' => ['required', 'string']
         ];
     }

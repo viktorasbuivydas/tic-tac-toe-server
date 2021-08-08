@@ -36,8 +36,9 @@ class GameController extends Controller
 
         $winner_squares = (new BoardService())->findWinnerSquares($game_board);
 
-        if ($winner_squares['isFinished'] !== null) {
-            $game->isFinished = $winner_squares['isFinished'];
+        if ($winner_squares['is_finished'] !== null) {
+            $game->is_finished = $winner_squares['is_finished'];
+            $game->winner_moves = $winner_squares['winner_moves'];
             $game->save();
         }
 

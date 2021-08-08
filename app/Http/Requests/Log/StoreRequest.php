@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'game_uid' => ['required', 'string'],
-            'isX' => ['required', 'boolean'],
+            'is_x' => ['required', 'boolean'],
             'x' => ['required', 'integer'],
             'y' => ['required', 'integer'],
         ];

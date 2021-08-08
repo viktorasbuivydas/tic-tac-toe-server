@@ -22,7 +22,7 @@ class LogController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $player = $request->isX ? 'X' : 'O';
+        $player = $request->is_x ? 'X' : 'O';
         $log_text = 'Player put ' . $player . ' on this square: x: ' . $request->x . ' y: ' . $request->y;
         $game = Game::where('uid', $request->game_uid)->firstOrFail();
         $log = $game->logs()->create([

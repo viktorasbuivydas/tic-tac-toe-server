@@ -10,9 +10,9 @@ class Board extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $fillable = ['x', 'y', 'isX', 'game_id'];
+    protected $fillable = ['x', 'y', 'is_x', 'game_id'];
     protected $casts = [
-        'isX' => 'boolean',
+        'is_x' => 'boolean',
     ];
 
     public function getRouteKeyName(): string

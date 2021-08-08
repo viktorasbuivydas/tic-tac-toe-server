@@ -15,7 +15,7 @@ class ShowResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'isX' => $this->isX,
+            'is_x' => $this->is_x,
             'game_uid' => $this->game_uid,
         ];
     }

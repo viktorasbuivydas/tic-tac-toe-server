@@ -18,7 +18,7 @@ class CreateBoardsTable extends Migration
             $table->integer('x');
             $table->integer('y');
             $table->foreignId('game_id');
-            $table->boolean('isX')->nullable();
+            $table->boolean('is_x')->nullable();
         });
     }
 

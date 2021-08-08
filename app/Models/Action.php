@@ -9,9 +9,9 @@ class Action extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['isX', 'game_id'];
+    protected $fillable = ['is_x', 'game_id'];
 
     protected $casts = [
-        'isX' => 'boolean',
+        'is_x' => 'boolean',
     ];
 }

@@ -41,7 +41,7 @@ class BoardController extends Controller
             ->where('game_id', $game->id);
 
         $square = $board->firstOrFail();
-        $square->isX = $request->isX;
+        $square->isX = $request->is_x;
         $square->save();
 
         return new ShowResource($square);

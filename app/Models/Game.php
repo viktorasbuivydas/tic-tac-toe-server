@@ -9,10 +9,11 @@ class Game extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['uid', 'isFinished'];
+    protected $fillable = ['uid', 'is_finished', 'winning_moves'];
 
     protected $casts = [
-        'isFinished' => 'boolean'
+        'is_finished' => 'boolean',
+        'winning_moves' => 'array'
     ];
 
     public $timestamps = false;
