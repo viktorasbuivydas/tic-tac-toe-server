@@ -14,7 +14,7 @@ class AddWinningMovesToGamesTable extends Migration
     public function up()
     {
         Schema::table('games', function (Blueprint $table) {
-            $table->json('winning_moves');
+            $table->json('winning_moves')->nullable();
         });
     }
 
