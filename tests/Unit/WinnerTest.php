@@ -156,7 +156,7 @@ class WinnerTest extends TestCase
         $this->assertEquals(json_encode($winner), json_encode(
             [
                 'is_finished' => $is_finished,
-                'winner_moves' => $winner_moves,
+                'winning_moves' => $winner_moves,
                 'is_winner_x' => $is_winner_x
             ]));
     }

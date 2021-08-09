@@ -15,9 +15,8 @@ class BoardController extends Controller
 {
     public function show($uid)
     {
-        $game = Game::where('uid', $uid)->firstOrFail();
+        $game = Game::where('uid', $uid)->select('id')->firstOrFail();
         $board = $game->squares()->get();
-
         return ShowResource::collection($board);
     }
 
@@ -41,7 +40,7 @@ class BoardController extends Controller
             ->where('game_id', $game->id);
 
         $square = $board->firstOrFail();
-        $square->isX = $request->is_x;
+        $square->is_x = $request->is_x;
         $square->save();
 
         return new ShowResource($square);

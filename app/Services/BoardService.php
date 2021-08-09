@@ -31,8 +31,8 @@ class BoardService
             [2, 4, 6],
         ];
         $winner = [
-            'is_finished' => null,
-            'winner_moves' => null,
+            'is_finished' => false,
+            'winning_moves' => [],
             'is_winner_x' => null
         ];
         $score = 0;
@@ -45,7 +45,7 @@ class BoardService
                         $score++;
                         if ($score === 3) {
                             $winner['is_finished'] = true;
-                            $winner['winner_moves'] = $winningMoves[$i];
+                            $winner['winning_moves'] = $winningMoves[$i];
                             $winner['is_winner_x'] = $isPlayerX;
                             break;
                         }
@@ -69,7 +69,7 @@ class BoardService
             }
             if ($score === 9) {
                 $winner['is_finished'] = true;
-                $winner['winner_moves'] = null;
+                $winner['winning_moves'] = null;
                 $winner['is_winner_x'] = null;
             }
 

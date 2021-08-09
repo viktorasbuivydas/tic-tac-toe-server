@@ -38,7 +38,7 @@ class GameController extends Controller
 
         if ($winner_squares['is_finished'] !== null) {
             $game->is_finished = $winner_squares['is_finished'];
-            $game->winner_moves = $winner_squares['winner_moves'];
+            $game->winning_moves = $winner_squares['winning_moves'];
             $game->save();
         }
 

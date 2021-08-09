@@ -18,7 +18,7 @@ class ShowResource extends JsonResource
             'id' => $this->id,
             'x' => $this->x,
             'y' => $this->y,
-            'is_x' => $this->is_x,
+            'is_x' => $this->is_x
         ];
     }
 }
