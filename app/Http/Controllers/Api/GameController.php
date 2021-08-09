@@ -44,4 +44,11 @@ class GameController extends Controller
 
         return $winner_squares;
     }
+    
+    public function loadGame()
+    {
+
+        $games = Game::all()->take(3);
+        return StoreResource::collection($games);
+    }
 }

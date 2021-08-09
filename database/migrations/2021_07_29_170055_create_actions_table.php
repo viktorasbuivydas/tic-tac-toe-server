@@ -15,6 +15,8 @@ class CreateActionsTable extends Migration
     {
         Schema::create('actions', function (Blueprint $table) {
             $table->id();
+            $table->integer('x');
+            $table->integer('y');
             $table->boolean('is_x');
             $table->foreignId('game_id');
             $table->timestamps();

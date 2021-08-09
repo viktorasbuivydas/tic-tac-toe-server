@@ -16,6 +16,36 @@ class BoardService
         return $board;
     }
 
+    public function generateSeedBoard($game_id)
+    {
+        $board = [];
+        for ($y = 1; $y <= 3; $y++) {
+            for ($x = 1; $x <= 3; $x++) {
+                array_push($board, ['x' => $x, 'y' => $y, 'game_id' => $game_id, 'is_x' => null]);
+            }
+        }
+        switch ($game_id) {
+            case 1:
+                $board[0]['is_x'] = true;
+                $board[1]['is_x'] = false;
+                $board[2]['is_x'] = true;
+                break;
+            case 2:
+                $board[3]['is_x'] = true;
+                $board[6]['is_x'] = false;
+                $board[5]['is_x'] = true;
+                $board[7]['is_x'] = false;
+                break;
+            case 3:
+                $board[1]['is_x'] = false;
+                $board[3]['is_x'] = true;
+                $board[2]['is_x'] = false;
+                $board[4]['is_x'] = true;
+                break;
+        }
+        return $board;
+    }
+
     public function findWinnerSquares($board)
     {
         $winningMoves = [

@@ -17,6 +17,7 @@ use App\Http\Controllers\Api;
 Route::resource('actions', Api\ActionController::class, ['only' => ['store']]);
 Route::resource('boards', Api\BoardController::class, ['only' => ['show', 'store', 'update']]);
 Route::resource('games', Api\GameController::class, ['only' => ['show', 'store', 'update']]);
+Route::get('load', [Api\GameController::class, 'loadGame']);
 Route::resource('logs', Api\LogController::class, ['only' => ['show', 'store']]);
 
 
